@@ -9,8 +9,11 @@ import { Task } from '../models/task';
 export class TodoComponent implements OnInit {
 
   tasks: Task[];
+  showForm = false;
+  newTask: Task;
   constructor() {
   	this.tasks = [];
+    this.newTask = new Task("", "", "");
   }
 
   ngOnInit() {
@@ -23,5 +26,11 @@ export class TodoComponent implements OnInit {
   	this.tasks = this.tasks.filter((ele) => {
       return ele != task;
    	});
+  }
+
+  createTask(){
+    this.tasks.push(this.newTask);
+    this.newTask = new Task("", "", "");
+    this.showForm = false;
   }
 }

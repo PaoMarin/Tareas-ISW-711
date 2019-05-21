@@ -1,8 +1,38 @@
-<h2>Todo List</h2>
-
-<ul>
-	<li *ngFor="let task of tasks" (click)="deleteTask(task)">
+<ul class="list-group">
+	<li *ngIf="!showForm" class="list-group-item d-flex justify-content-between align-items-center mt-2">
+		<h3>Todo List</h3>
+		<button class="btn btn-success" (click)="showForm = true">
+			<i class="fas fa-plus"></i>
+		</button>
+	</li>
+	<li *ngIf="showForm" class="list-group-item d-flex justify-content-between align-items-center mt-2">
+		<label>Description</label>
+		<input type="text" [(ngModel)]="newTask.description">
+		<label>State</label>
+		<select [(ngModel)]="newTask.state">
+			<option>Open</option>
+			<option>In Progress</option>
+			<option>Closed</option>
+		</select>
+		<label>Priority</label>
+		<select [(ngModel)]="newTask.priority">
+			<option>Low</option>
+			<option>Medium</option>
+			<option>High</option>
+		</select>
+		<div>
+			<button class="btn btn-danger" (click)="showForm = false">
+				<i class="fas fa-arrow-left"></i>
+			</button>
+			<button class="btn btn-primary" (click)="createTask()">
+				<i class="fas fa-save"></i>
+			</button>
+		</div>
+	</li>
+  	<li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let task of tasks">
 		{{task.description}}
+		<button class="btn btn-danger" (click)="deleteTask(task)">
+			<i class="fas fa-trash-alt"></i>
+		</button>
 	</li>
 </ul>
-
