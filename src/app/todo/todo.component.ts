@@ -29,8 +29,16 @@ export class TodoComponent implements OnInit {
   }
 
   createTask(){
-    this.tasks.push(this.newTask);
-    this.newTask = new Task("", "", "");
-    this.showForm = false;
+      this.tasks.push(this.newTask);
+      this.newTask = new Task("", "", "");
+      this.showForm = false;
   }
+
+  editTask(task:Task){
+     this.newTask.description = task.description;
+     this.newTask.state = task.state;
+     this.newTask.priority = task.priority;
+      this.showForm = true;
+  }
+    
 }
